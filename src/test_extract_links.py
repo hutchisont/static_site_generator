@@ -47,3 +47,7 @@ class ExtractLinksTest(unittest.TestCase):
             ],
             links
         )
+
+
+if __name__ == "__main__":
+    unittest.main()

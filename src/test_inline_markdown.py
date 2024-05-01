@@ -222,3 +222,7 @@ class InlineMarkdownTest(unittest.TestCase):
             ],
             new_nodes
         )
+
+
+if __name__ == "__main__":
+    unittest.main()
