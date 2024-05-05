@@ -13,6 +13,7 @@ from extract_links import (
     extract_markdown_links,
 )
 
+
 def split_nodes_delimiter(old_nodes: list, delimiter: str, text_type: str) -> list:
     new_nodes = []
     for node in old_nodes:
@@ -90,9 +91,9 @@ def split_nodes_link(old_nodes: list):
 
 def text_to_textnodes(text: str):
     starting_node = TextNode(text, text_type_text)
-    next_nodes = split_nodes_delimiter([starting_node], "**" ,text_type_bold)
-    next_nodes = split_nodes_delimiter(next_nodes, "*" ,text_type_italic)
-    next_nodes = split_nodes_delimiter(next_nodes, "`" ,text_type_code)
+    next_nodes = split_nodes_delimiter([starting_node], "**", text_type_bold)
+    next_nodes = split_nodes_delimiter(next_nodes, "*", text_type_italic)
+    next_nodes = split_nodes_delimiter(next_nodes, "`", text_type_code)
     next_nodes = split_nodes_image(next_nodes)
     next_nodes = split_nodes_link(next_nodes)
     return next_nodes

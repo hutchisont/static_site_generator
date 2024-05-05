@@ -31,7 +31,8 @@ class InlineMarkdownTest(unittest.TestCase):
                 TextNode(" word and a ", text_type_text),
                 TextNode("code block", text_type_code),
                 TextNode(" and an ", text_type_text),
-                TextNode("image", text_type_image, "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png"),
+                TextNode("image", text_type_image,
+                         "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png"),
                 TextNode(" and a ", text_type_text),
                 TextNode("link", text_type_link, "https://boot.dev"),
             ],
@@ -39,18 +40,19 @@ class InlineMarkdownTest(unittest.TestCase):
         )
 
     def test_split_image(self):
-       node = TextNode(
-           "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png)",
-           text_type_text,
-       )
-       new_nodes = split_nodes_image([node])
-       self.assertListEqual(
-           [
-               TextNode("This is text with an ", text_type_text),
-               TextNode("image", text_type_image, "https://i.imgur.com/zjjcJKZ.png"),
-           ],
-           new_nodes,
-       )
+        node = TextNode(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png)",
+            text_type_text,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with an ", text_type_text),
+                TextNode("image", text_type_image,
+                         "https://i.imgur.com/zjjcJKZ.png"),
+            ],
+            new_nodes,
+        )
 
     def test_split_image_single(self):
         node = TextNode(
@@ -60,7 +62,8 @@ class InlineMarkdownTest(unittest.TestCase):
         new_nodes = split_nodes_image([node])
         self.assertListEqual(
             [
-                TextNode("image", text_type_image, "https://www.example.com/image.png"),
+                TextNode("image", text_type_image,
+                         "https://www.example.com/image.png"),
             ],
             new_nodes,
         )
@@ -74,7 +77,8 @@ class InlineMarkdownTest(unittest.TestCase):
         self.assertListEqual(
             [
                 TextNode("This is text with an ", text_type_text),
-                TextNode("image", text_type_image, "https://i.imgur.com/zjjcJKZ.png"),
+                TextNode("image", text_type_image,
+                         "https://i.imgur.com/zjjcJKZ.png"),
                 TextNode(" and another ", text_type_text),
                 TextNode(
                     "second image", text_type_image, "https://i.imgur.com/3elNhQu.png"
@@ -94,7 +98,8 @@ class InlineMarkdownTest(unittest.TestCase):
                 TextNode("This is text with a ", text_type_text),
                 TextNode("link", text_type_link, "https://boot.dev"),
                 TextNode(" and ", text_type_text),
-                TextNode("another link", text_type_link, "https://blog.boot.dev"),
+                TextNode("another link", text_type_link,
+                         "https://blog.boot.dev"),
                 TextNode(" with text that follows", text_type_text),
             ],
             new_nodes,
