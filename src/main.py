@@ -1,9 +1,13 @@
-from textnode import TextNode
+import shutil
 
 
 def main():
-    testNode = TextNode("Test node", "bold", "http://localhost:8888")
-    print(testNode)
+    _static_to_public()
+
+
+def _static_to_public():
+    shutil.rmtree("public")
+    shutil.copytree("static", "public")
 
 
 if __name__ == "__main__":
