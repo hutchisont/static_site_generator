@@ -6,7 +6,8 @@ from block_markdown import markdown_to_html_node
 
 def main():
     _static_to_public()
-    _generate_page("content/index.md", "template.html", "public/index.html")
+    # _generate_page("content/index.md", "template.html", "public/index.html")
+    _generate_all_pages("content", "template.html", "public")
 
 
 def _static_to_public():
@@ -46,11 +47,24 @@ def _generate_page(from_path: str, template_path: str, dest_path: str):
         "{{ Title }}", title).replace("{{ Content }}", page_content)
 
     just_path = os.path.dirname(dest_path)
-    if not os.path.exists(just_path):
+    print(f"just path: {just_path}")
+    if just_path and not os.path.exists(just_path):
         os.makedirs(just_path)
 
-    with open(dest_path, "w") as f:
+    new_filename = os.path.basename(from_path).split(".")[0] + ".html"
+
+    with open(dest_path + new_filename, "w") as f:
         f.write(generated_page_text)
+
+
+def _generate_all_pages(content_dir_path: str, template_path: str, dest_dir_path: str):
+    for root, subdirs, files in os.walk(content_dir_path):
+        print(f"root: {root}\nsubdirs: {subdirs}\nfiles: {files}")
+        for file in files:
+            from_file = os.path.join(root, file)
+            print(from_file)
+            _generate_page(from_file, template_path,
+                           dest_dir_path + "/" + root.replace("content/", "").replace("content", "") + "/")
 
 
 if __name__ == "__main__":
