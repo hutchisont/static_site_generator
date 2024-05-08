@@ -29,8 +29,8 @@ def _extract_title(markdown: str):
 
 
 def _generate_page(from_path: str, template_path: str, dest_path: str):
-    print(f"Generating page from {from_path} to\
-            {dest_path} using {template_path}.")
+    print(f"Generating page from {from_path} to {
+          dest_path} using {template_path}.")
     markdown = None
     with open(from_path) as f:
         markdown = f.read()
@@ -40,7 +40,7 @@ def _generate_page(from_path: str, template_path: str, dest_path: str):
         template = f.read()
 
     page_content = markdown_to_html_node(markdown).to_html()
-    title = extract_title(markdown)
+    title = _extract_title(markdown)
 
     generated_page_text = template.replace(
         "{{ Title }}", title).replace("{{ Content }}", page_content)

@@ -134,7 +134,7 @@ def _heading_block_to_html_node(block: str):
 
 
 def _code_block_to_html_node(block: str):
-    if not _check_for_code(block):
+    if not _check_for_code(block.split("\n")):
         raise ValueError("Invalid code block")
     text = block[4:-3]
     children = text_to_children(text)
